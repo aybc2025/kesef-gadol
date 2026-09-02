@@ -4,6 +4,8 @@ import styles from './Modal.module.css'
 export function Modal({ open, onClose, title, children }) {
   const sheetRef = useRef(null)
   const previouslyFocused = useRef(null)
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
 
   useEffect(() => {
     if (!open) return
@@ -17,7 +19,7 @@ export function Modal({ open, onClose, title, children }) {
 
     function handleKeyDown(e) {
       if (e.key === 'Escape') {
-        onClose()
+        onCloseRef.current()
         return
       }
       if (e.key === 'Tab' && focusable && focusable.length > 0) {
@@ -42,7 +44,7 @@ export function Modal({ open, onClose, title, children }) {
       document.body.style.overflow = prevOverflow
       previouslyFocused.current?.focus?.()
     }
-  }, [open, onClose])
+  }, [open])
 
   if (!open) return null
 
