@@ -3,7 +3,8 @@ import { CurrencyToggle } from './CurrencyToggle'
 import { DEFAULT_CURRENCY } from '../../lib/currency'
 import styles from './EmptyState.module.css'
 
-export function EmptyState({ onSetStartingBalance }) {
+export function EmptyState({ onSetStartingBalance, onSetChildName }) {
+  const [name, setName] = useState('')
   const [amount, setAmount] = useState('')
   const [currency, setCurrency] = useState(DEFAULT_CURRENCY)
 
@@ -11,6 +12,7 @@ export function EmptyState({ onSetStartingBalance }) {
     e.preventDefault()
     const value = Number(amount)
     if (!Number.isFinite(value) || value < 0) return
+    if (name.trim()) onSetChildName?.(name.trim())
     onSetStartingBalance(currency, value)
   }
 
@@ -18,8 +20,17 @@ export function EmptyState({ onSetStartingBalance }) {
     <div className={styles.wrap}>
       <div className={styles.plant} aria-hidden="true">🌱</div>
       <p className={styles.headline}>עוד אין לך כסף רשום</p>
-      <p className={styles.body}>בואו נתחיל! כמה כסף יש לך עכשיו בארנק או בקופה?</p>
+      <p className={styles.body}>בואו נתחיל! איך קוראים לך, וכמה כסף יש לך עכשיו בארנק או בקופה?</p>
       <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="איך קוראים לך?"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className={styles.input}
+          aria-label="השם שלך"
+          maxLength={20}
+        />
         <CurrencyToggle value={currency} onChange={setCurrency} />
         <input
           type="number"

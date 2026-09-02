@@ -84,3 +84,10 @@ button, [role="button"] {
   color: var(--green-700);
   margin: var(--sp-1) var(--sp-5) var(--sp-2);
 }
+
+.chart-caption {
+  font-size: var(--scale-xs);
+  color: var(--ink-soft);
+  text-align: center;
+  margin: calc(-1 * var(--sp-2)) var(--sp-5) var(--sp-4);
+}
