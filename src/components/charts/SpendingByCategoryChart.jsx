@@ -21,7 +21,7 @@ export function SpendingByCategoryChart({ data, currency }) {
     .sort((a, b) => b.amount - a.amount)
 
   return (
-    <div style={{ width: '100%', height: Math.max(140, chartData.length * 44) }}>
+    <div style={{ width: '100%', height: Math.max(140, chartData.length * 44), direction: 'ltr' }}>
       <ResponsiveContainer>
         <BarChart data={chartData} layout="vertical" margin={{ top: 4, right: 16, left: 4, bottom: 4 }}>
           <CartesianGrid stroke="var(--line)" horizontal={false} />
@@ -32,7 +32,7 @@ export function SpendingByCategoryChart({ data, currency }) {
             tick={{ fontSize: 12, fill: 'var(--ink)' }}
             axisLine={false}
             tickLine={false}
-            width={80}
+            width={96}
           />
           <Tooltip
             formatter={(value) => formatMoney(value, currency)}

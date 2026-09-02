@@ -11,7 +11,7 @@ export function BalanceOverTimeChart({ data, currency }) {
   }
 
   return (
-    <div style={{ width: '100%', height: 200 }}>
+    <div style={{ width: '100%', height: 200, direction: 'ltr' }}>
       <ResponsiveContainer>
         <LineChart data={data} margin={{ top: 8, right: 8, left: 8, bottom: 0 }}>
           <CartesianGrid stroke="var(--line)" vertical={false} />

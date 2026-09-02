@@ -41,29 +41,34 @@ export function monthKey(date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`
 }
 
-// Balance-over-time series for a single currency, month by month, starting
-// from that currency's starting balance.
+// Balance-over-time series for a single currency, starting from that
+// currency's starting balance. One anchor point ("start") plus the running
+// balance at the end of each day that had activity, so the graph shows up
+// right after the first transaction instead of waiting for a second
+// calendar month.
 export function balanceSeriesByCurrency(startingBalances, transactions, currency) {
+  const start = startingBalances[currency] || 0
   const relevant = transactions
     .filter((tx) => currencyOf(tx) === currency)
     .slice()
     .sort((a, b) => new Date(a.date) - new Date(b.date))
 
   if (relevant.length === 0) {
-    return [{ label: 'עכשיו', balance: startingBalances[currency] || 0 }]
+    return [{ label: 'עכשיו', balance: start }]
   }
 
-  const byMonth = new Map()
-  let running = startingBalances[currency] || 0
+  const byDay = new Map()
+  let running = start
   for (const tx of relevant) {
     running += tx.type === 'income' ? tx.amount : -tx.amount
-    byMonth.set(monthKey(tx.date), running)
+    const d = new Date(tx.date)
+    byDay.set(`${d.getDate()}/${d.getMonth() + 1}`, running)
   }
 
-  return Array.from(byMonth.entries()).map(([key, balance]) => ({
-    label: key,
-    balance,
-  }))
+  return [
+    { label: 'התחלה', balance: start },
+    ...Array.from(byDay.entries()).map(([label, balance]) => ({ label, balance })),
+  ]
 }
 
 export function monthlyTotals(transactions, currency, monthKeyStr) {
