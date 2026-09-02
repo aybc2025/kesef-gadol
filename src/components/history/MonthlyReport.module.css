@@ -1,0 +1,115 @@
+.report {
+  padding: var(--sp-6) var(--sp-5);
+  font-family: var(--font-body);
+  color: #1a1a1a;
+  background: #fff;
+}
+
+.reportHeader {
+  text-align: center;
+  border-bottom: 3px solid var(--green-700);
+  padding-bottom: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.reportEyebrow {
+  font-size: var(--scale-sm);
+  color: var(--green-700);
+  font-weight: 700;
+  margin-bottom: var(--sp-1);
+}
+
+.reportTitle {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--green-900);
+  margin-bottom: var(--sp-1);
+}
+
+.reportSubtitle {
+  font-size: var(--scale-sm);
+  color: #555;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+.summaryCard {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3);
+  text-align: center;
+}
+
+.summaryLabel {
+  font-size: 11px;
+  color: #666;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.summaryValue {
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--font-display);
+}
+
+.summaryValue.income { color: var(--green-700); }
+.summaryValue.expense { color: var(--coral); }
+.summaryValue.net { color: var(--green-900); }
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green-900);
+  margin: var(--sp-5) 0 var(--sp-2);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+}
+
+.categoryRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px dotted var(--line);
+}
+
+.txTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.txTable th {
+  text-align: right;
+  padding: 6px 8px;
+  color: var(--green-700);
+  border-bottom: 2px solid var(--green-100);
+  font-size: 11px;
+}
+
+.txTable td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.txAmount.income { color: var(--green-700); font-weight: 700; }
+.txAmount.expense { color: var(--coral); font-weight: 700; }
+
+.footer {
+  margin-top: var(--sp-8);
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+}
+
+.emptyNote {
+  font-size: 13px;
+  color: #777;
+  padding: var(--sp-3) 0;
+}

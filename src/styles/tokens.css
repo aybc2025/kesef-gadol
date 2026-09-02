@@ -1,0 +1,72 @@
+:root {
+  /* Color — derived in oklch conceptually, expressed as hex for direct use.
+     Palette: warm earthy green (growth/money) + gold (achievement) + coral (spending). */
+  --cream: #fbf7ee;         /* app background */
+  --paper: #ffffff;         /* card surfaces */
+  --ink: #22301f;           /* primary text */
+  --ink-soft: rgba(34, 48, 31, 0.68); /* secondary text */
+
+  --green-900: #1f3a22;     /* headings, high-emphasis text — text-safe on cream/paper (>7:1) */
+  --green-700: #356b3b;     /* accents, links, labels — text-safe on cream/paper (>4.5:1) */
+  --green-500: #4f9151;     /* primary CTA fill — white text safe on it (>4.5:1) */
+  --green-300: #8fc08c;     /* chart bars, decorative only — not for text */
+  --green-100: #dceeda;     /* soft card/badge backgrounds */
+
+  --gold: #d8a339;          /* goal / achievement accent — decorative + large text only */
+  --gold-soft: #f1dda6;     /* goal card background */
+
+  --coral: #e0725a;         /* expense accent — white text safe on it (>4.5:1) */
+  --coral-soft: #fbe6df;    /* expense badge background */
+
+  --line: rgba(34, 48, 31, 0.12); /* hairline borders */
+  --shadow-soft: 0 8px 24px rgba(31, 58, 34, 0.08);
+
+  /* Type */
+  --font-display: 'Rubik', 'Segoe UI', sans-serif;
+  --font-body: 'Rubik', 'Segoe UI', sans-serif;
+  --scale-xs: 12px;
+  --scale-sm: 13px;
+  --scale-base: 15px;
+  --scale-md: 17px;
+  --scale-lg: 22px;
+  --scale-xl: 28px;
+  --scale-2xl: 36px;
+
+  /* Spacing — 4px base */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+
+  /* Radius — large-uniform strategy for cards, pill for actionable chips/buttons */
+  --radius-card: 18px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+
+  /* Elevation — two levels only: resting card, raised (modal/sheet) */
+  --elevation-1: 0 2px 8px rgba(31, 58, 34, 0.06);
+  --elevation-2: 0 16px 40px rgba(31, 58, 34, 0.22);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dir: 1;
+}
+
+[dir='rtl'] {
+  --dir: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

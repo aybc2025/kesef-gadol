@@ -1,0 +1,74 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.field label {
+  display: block;
+  font-size: var(--scale-xs);
+  font-weight: 700;
+  color: var(--green-700);
+  margin-bottom: var(--sp-2);
+}
+
+.amountInput {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3);
+  font-size: var(--scale-xl);
+  font-weight: 700;
+  text-align: center;
+  color: var(--green-900);
+}
+
+.textInput {
+  width: 100%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3);
+  font-size: var(--scale-base);
+}
+
+.chipRow {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  gap: var(--sp-3);
+  margin-top: var(--sp-2);
+}
+
+.actions button {
+  flex: 1;
+  padding: var(--sp-3);
+  border-radius: var(--radius-sm);
+  border: none;
+  font-weight: 700;
+  font-size: var(--scale-sm);
+  transition: transform 120ms var(--ease-out);
+}
+
+.actions button:active {
+  transform: scale(0.97);
+}
+
+.cancel {
+  background: var(--green-100);
+  color: var(--green-900);
+}
+
+.confirm {
+  background: var(--green-500);
+  color: #fff;
+}
+
+.confirmExpense {
+  background: var(--coral);
+}

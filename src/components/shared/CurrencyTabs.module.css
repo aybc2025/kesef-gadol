@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  gap: var(--sp-2);
+  margin: 0 var(--sp-5) var(--sp-4);
+}
+
+.tab {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: var(--scale-sm);
+  font-weight: 600;
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius-pill);
+}
+
+.tab.active {
+  background: var(--green-500);
+  color: #fff;
+  border-color: var(--green-500);
+}

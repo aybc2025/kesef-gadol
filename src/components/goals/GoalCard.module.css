@@ -1,0 +1,85 @@
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--sp-4);
+  margin: 0 var(--sp-5) var(--sp-3);
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
+
+.title {
+  font-weight: 700;
+  color: var(--green-900);
+  font-size: var(--scale-base);
+}
+
+.target {
+  font-size: var(--scale-xs);
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.remove {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-size: var(--scale-base);
+  min-height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+}
+
+.remove:active {
+  background: var(--coral-soft);
+  color: var(--coral);
+}
+
+.bar {
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: var(--green-100);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: var(--radius-pill);
+  transition: width 500ms var(--ease-out);
+}
+
+.fill.done {
+  background: var(--green-500);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--sp-2);
+  font-size: var(--scale-xs);
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.celebrate {
+  background: var(--gold);
+  color: var(--green-900);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--sp-1) var(--sp-3);
+  font-weight: 700;
+  font-size: var(--scale-xs);
+}
+
+.achievedTag {
+  color: var(--green-700);
+  font-weight: 700;
+}

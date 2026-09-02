@@ -1,0 +1,32 @@
+.tabbar {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  padding: var(--sp-2) var(--sp-2) max(var(--sp-3), env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky;
+  bottom: 0;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--scale-xs);
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: var(--sp-1) var(--sp-2);
+  border-radius: var(--radius-sm);
+  min-width: 56px;
+  font-weight: 600;
+}
+
+.tab span:first-child {
+  font-size: 18px;
+}
+
+.tab.active {
+  color: var(--green-700);
+}

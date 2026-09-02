@@ -1,0 +1,86 @@
+@import './tokens.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--scale-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--cream);
+  position: relative;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  margin: 0;
+  color: var(--green-900);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--green-700);
+  outline-offset: 2px;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: var(--scale-base);
+}
+
+::selection {
+  background: var(--green-300);
+  color: var(--green-900);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Shared touch target minimum */
+button, [role="button"] {
+  min-height: 44px;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+}
+
+.section-label {
+  font-size: var(--scale-xs);
+  font-weight: 700;
+  color: var(--green-700);
+  margin: var(--sp-1) var(--sp-5) var(--sp-2);
+}

@@ -1,0 +1,22 @@
+.bar {
+  display: flex;
+  gap: var(--sp-3);
+  margin: 0 var(--sp-5) var(--sp-4);
+}
+
+.btn {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  color: var(--green-900);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3) var(--sp-2);
+  font-weight: 700;
+  font-size: var(--scale-sm);
+  transition: transform 120ms var(--ease-out), background 140ms var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
+  background: var(--green-100);
+}

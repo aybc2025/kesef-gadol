@@ -1,0 +1,38 @@
+.group {
+  display: flex;
+  gap: var(--sp-2);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+}
+
+.option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--sp-2) var(--sp-3);
+  font-weight: 600;
+  font-size: var(--scale-sm);
+  color: var(--ink-soft);
+  transition: background 140ms var(--ease-out), color 140ms var(--ease-out);
+}
+
+.option.active {
+  background: var(--green-500);
+  color: #fff;
+}
+
+.symbol {
+  font-weight: 800;
+  font-size: var(--scale-md);
+}
+
+.option:active {
+  transform: scale(0.97);
+}

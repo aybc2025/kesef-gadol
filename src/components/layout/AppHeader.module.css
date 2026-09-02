@@ -1,0 +1,26 @@
+.header {
+  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: var(--scale-md);
+  font-weight: 700;
+  color: var(--green-900);
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--green-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--scale-base);
+  font-weight: 700;
+  flex-shrink: 0;
+}

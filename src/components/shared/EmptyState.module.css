@@ -1,0 +1,57 @@
+.wrap {
+  text-align: center;
+  padding: var(--sp-8) var(--sp-5);
+}
+
+.plant {
+  font-size: 40px;
+  opacity: 0.6;
+  margin-bottom: var(--sp-3);
+}
+
+.headline {
+  font-size: var(--scale-lg);
+  font-weight: 700;
+  color: var(--green-900);
+  margin: 0 0 var(--sp-2);
+}
+
+.body {
+  font-size: var(--scale-base);
+  color: var(--ink-soft);
+  margin: 0 0 var(--sp-6);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.input {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-3);
+  font-size: var(--scale-lg);
+  text-align: center;
+  font-weight: 700;
+  color: var(--green-900);
+}
+
+.submit {
+  background: var(--green-500);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--sp-3) var(--sp-4);
+  font-weight: 700;
+  font-size: var(--scale-base);
+  transition: transform 120ms var(--ease-out);
+}
+
+.submit:active {
+  transform: scale(0.97);
+}
