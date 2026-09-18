@@ -3,6 +3,7 @@ import { AppHeader } from '../components/layout/AppHeader'
 import { CurrencyTabs } from '../components/shared/CurrencyTabs'
 import { TransactionList } from '../components/history/TransactionList'
 import { ExportBar } from '../components/history/ExportBar'
+import { ResetDataSection } from '../components/history/ResetDataSection'
 import { MonthlyReport } from '../components/history/MonthlyReport'
 import { useTransactions } from '../hooks/useTransactions'
 import { exportDataAsJson } from '../lib/exportJson'
@@ -41,8 +42,9 @@ function openingBalanceForMonth(startingBalances, transactions, currency, monthK
 }
 
 export function HistoryPage() {
-  const { profile, transactions, balanceList, deleteTransaction } = useTransactions()
-  const { goals } = useGoals()
+  const { profile, transactions, balanceList, deleteTransaction, resetAll: resetTransactions } =
+    useTransactions()
+  const { goals, resetAll: resetGoals } = useGoals()
   const availableCurrencies = balanceList.map((b) => b.currency)
   const [currency, setCurrency] = useState(availableCurrencies[0] || profile.defaultCurrency)
   const activeCurrency = availableCurrencies.includes(currency) ? currency : availableCurrencies[0]
@@ -61,6 +63,11 @@ export function HistoryPage() {
 
   function handleExportPdf() {
     window.print()
+  }
+
+  function handleResetEverything() {
+    resetTransactions()
+    resetGoals()
   }
 
   const reportTotals = useMemo(
@@ -89,6 +96,7 @@ export function HistoryPage() {
         <p style={{ textAlign: 'center', padding: 32, color: 'var(--ink-soft)' }}>
           עוד אין תנועות להצגה.
         </p>
+        <ResetDataSection onConfirmReset={handleResetEverything} />
       </>
     )
   }
@@ -150,6 +158,8 @@ export function HistoryPage() {
         categoryBreakdown={reportCategories}
         transactions={filtered}
       />
+
+      <ResetDataSection onConfirmReset={handleResetEverything} />
     </>
   )
 }

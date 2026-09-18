@@ -71,6 +71,14 @@ export function useTransactions() {
     [setProfile]
   )
 
+  // Resets both profile (name, starting balances, currency) and transactions
+  // back to a clean slate. Goals live in a separate hook (useGoals) and are
+  // reset independently — see HistoryPage's handleResetEverything.
+  const resetAll = useCallback(() => {
+    setProfile(DEFAULT_PROFILE)
+    setTransactions([])
+  }, [setProfile, setTransactions])
+
   const balances = useMemo(
     () => calculateBalances(startingBalances, transactions),
     [startingBalances, transactions]
@@ -94,5 +102,6 @@ export function useTransactions() {
     setStartingBalance,
     setChildName,
     setDefaultCurrency,
+    resetAll,
   }
 }

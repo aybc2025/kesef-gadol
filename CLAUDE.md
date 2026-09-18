@@ -18,6 +18,10 @@ npm run preview
 
 > **הערה לסביבת הפיתוח:** הפרויקט הזה נוצר בסביבה ללא גישה לרשת, כך שכל קבצי התלויות (package.json, קונפיגורציה) נכתבו ידנית ולא הותקנו/נבדקו בפועל עם `npm install`. בפעם הראשונה שפותחים את הפרויקט בסביבה עם אינטרנט (למשל ב-Claude Code או במחשב רגיל), יש להריץ `npm install` ואז `npm run dev` כדי לוודא שהכול עולה כמצופה, ולתקן אם יש קונפליקטים בגרסאות.
 
+## `package-lock.json` — נאכף אוטומטית, לא צריך לזכור
+
+`package-lock.json` כבר קיים ומחובר לגיט, וה-workflow (`deploy.yml`) כבר משתמש ב-`npm ci` (עם `cache: npm`) שדורש אותו. כדי שזה יישאר נכון גם בעתיד — אם יתווספו/יעודכנו תלויות — יש **git hook אוטומטי** (`.githooks/pre-commit`) שחוסם כל commit שבו קיימת תיקיית `node_modules` (כלומר הורצה `npm install`) אך `package-lock.json` לא עודכן/לא staged. ה-hook מתחבר לגיט **אוטומטית**, בלי צעד נוסף — script בשם `prepare` בתוך `package.json` מריץ `git config core.hooksPath .githooks` בכל פעם שמריצים `npm install` (התנהגות סטנדרטית של npm). כך שברגע שמישהו — כולל Claude Code — מריץ `npm install` בפרויקט, ה-hook כבר פעיל.
+
 ## סטאק טכנולוגי
 
 - **React + Vite** — צד לקוח בלבד, ללא שרת
@@ -45,6 +49,9 @@ npm run preview
 
 > **הערה:** מפתח ה-localStorage (`PREFIX` בקובץ `src/lib/storage.js`) עודכן מ-`kesefKatan:` ל-`kesefGadol:` בעקבות שינוי שם האפליקציה. מכיוון שהאפליקציה עדיין לא פורסמה בפועל, זה לא משפיע על אף אחד — אך אם בעתיד ישונה השם שוב **אחרי** שיש כבר משתמשים עם נתונים שמורים, יש לזכור ששינוי ה-prefix "ימחק" (בפועל: לא ימצא) את הנתונים הישנים שלהם, ותידרש לוגיקת מיגרציה.
 
+### איפוס הכל / התחלה מחדש
+בתחתית דף ההיסטוריה (`HistoryPage`) יש "אזור מסוכן" (`src/components/history/ResetDataSection.jsx`) שמאפשר למחוק את כל הנתונים ולהתחיל מחדש. דורש הקלדת מילת אישור ("איפוס") לפני שהפעולה מתבצעת בפועל — אין מחיקה בלחיצה בודדת. הלוגיקה בפועל: כל hook (`useTransactions`, `useGoals`) חושף `resetAll()` משלו שמאפס גם את ה-state בזיכרון וגם את מה שנשמר ב-localStorage (דרך ה-setter של `useLocalStorage`, שכותב ל-localStorage בכל שינוי state); `HistoryPage` קורא לשניהם יחד. אחרי איפוס, `HomePage` מזהה אוטומטית מצב "משתמש חדש" (`isNewUser`) וחוזר למסך הבקשה ליתרה התחלתית — בלי צורך ברענון דף.
+
 ## מבנה תיקיות
 
 ```
@@ -54,7 +61,7 @@ src/
 │   ├── home/           # BalanceHero (גרפיקת הצמח), QuickActions, MiniChart, RecentTxList
 │   ├── charts/          # BalanceOverTimeChart, SpendingByCategoryChart (Recharts)
 │   ├── goals/           # GoalCard, GoalForm
-│   ├── history/          # TransactionList, ExportBar, MonthlyReport (PDF)
+│   ├── history/          # TransactionList, ExportBar, ResetDataSection, MonthlyReport (PDF)
 │   ├── modals/            # AddIncomeModal, AddExpenseModal
 │   └── shared/            # Modal, Chip, CurrencyToggle, CurrencyTabs, EmptyState
 ├── hooks/               # useTransactions, useGoals, useLocalStorage
@@ -70,7 +77,7 @@ src/
 
 ## מה נשאר לבדוק/להשלים בסביבה עם אינטרנט
 
-1. `npm install` בפועל, לוודא תאימות גרסאות (React 18, Vite 5, Recharts 2, vite-plugin-pwa).
+1. `npm install` בפועל, לוודא תאימות גרסאות (React 18, Vite 5, Recharts 2, vite-plugin-pwa). זה גם הצעד שמפעיל את ה-git hook לאכיפת `package-lock.json` — ראו התיבה למעלה.
 2. בדיקת ה-PWA (התקנה למסך הבית, עבודה אופליין) במכשיר אמיתי.
 3. בדיקת `window.print()` בדפדפנים שונים (במיוחד Safari/iOS, שם "שמירה כ-PDF" עובדת קצת אחרת).
 4. אייקונים — `public/icons/` מכיל סט אייקונים מעוצב (מטבע עם נבט צומח, בהתאם לפלטת הצבעים ולקונספט הצמיחה של האפליקציה): `icon-192.png`, `icon-512.png`, `icon-512-maskable.png` (לאנדרואיד, עם safe zone שנבדק שלא נחתך בחיתוך עגול), `apple-touch-icon.png` (180px, ל-iOS), ו-`favicon-32.png`. קובץ המקור של הגנרטור נמצא ב-`icon-design/make_icons_v2.py` בשורש הריפו (לא חלק מהבילד) — ניתן להריץ מחדש ולשנות צבעים/גודל אם רוצים גרסה אחרת.
