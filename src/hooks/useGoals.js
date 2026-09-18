@@ -40,5 +40,9 @@ export function useGoals() {
     [setGoals]
   )
 
-  return { goals, addGoal, deleteGoal, markAchieved }
+  const resetAll = useCallback(() => {
+    setGoals([])
+  }, [setGoals])
+
+  return { goals, addGoal, deleteGoal, markAchieved, resetAll }
 }
